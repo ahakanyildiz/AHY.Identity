@@ -1,0 +1,24 @@
+﻿@model RoleAssignSendModel
+@{
+    ViewData["Title"] = "AssignRole";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form asp-action="AssignRole" asp-controller="User" method="post">
+    <div class="mb-3">
+        <input type="hidden" asp-for="@Model.UserId" />
+        <div class="list-group">
+            @for (int i = 0; i < Model.Roles.Count; i++)
+            {
+                <input type="hidden" asp-for="@Model.Roles[i].Name" />
+                <input type="hidden" asp-for="@Model.Roles[i].RoleId" />
+                <label class="list-group-item" for="firstCheckboxStretched">
+                    <input class="form-check-input me-1" asp-for="@Model.Roles[i].Exist">
+                    @Model.Roles[i].Name
+                </label>
+            }
+        </div>
+        <button type="submit" class="btn btn-primary">Ekle</button>
+    </div>
+</form>
+
